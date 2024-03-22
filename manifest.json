@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Anki Vocabulary Adder",
+    "version": "1.0",
+    "description": "Add selected words to Anki",
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "permissions": [
+      "activeTab",
+      "contextMenus",
+      "storage"
+    ],
+    "host_permissions": [
+        "http://127.0.0.1:8765/",
+        "https://wordsapiv1.p.mashape.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+          "resources": ["ejdict-hand-utf8.txt"],
+          "matches": ["<all_urls>"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
